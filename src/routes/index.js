@@ -1,23 +1,23 @@
 import React from "react";
 import { Route, Switch } from "react-router";
-import Home from "../components/Home";
-import Hello from "../components/Hello";
-import Counter from "../components/Counter";
-import NoMatch from "../components/NoMatch";
-import NavBar from "../components/NavBar";
-import BookmarkContainer from "../containers/BookmarkContainer";
+import {
+  AdminHome,
+  AdminStoreForm,
+  AdminStoreList,
+  UserHome
+} from "../containers";
+import { NoMatch } from "../components/common";
 
 const routes = (
-  <div>
-    <NavBar />
-    <Switch>
-      <Route exact path="/" component={Home} />
-      <Route path="/hello" component={Hello} />
-      <Route path="/counter" component={Counter} />
-      <Route path="/bookmark" component={BookmarkContainer} />
-      <Route component={NoMatch} />
-    </Switch>
-  </div>
+  <Switch>
+    <Route exact strict path="/admin" component={AdminHome} />
+    <Route exact strict path="/admin/store/form" component={AdminStoreForm} />
+    <Route exact strict path="/admin/store/list" component={AdminStoreList} />
+
+    <Route exact strict path="/" component={UserHome} />
+
+    <Route path="**" component={NoMatch} />
+  </Switch>
 );
 
 export default routes;

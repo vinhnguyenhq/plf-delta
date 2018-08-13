@@ -6,17 +6,16 @@ import { Provider } from "react-redux";
 import configureStore from "./store/configureStore";
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
+import InitStorage from "./utils/storage";
+
+window.PLF = {
+  config: {},
+  storage: InitStorage
+};
 
 const store = configureStore();
 
 store.runSaga();
-
-const logReduxState = store =>
-  window.setInterval(() => {
-    return console.log(store.getState());
-  }, 1000);
-
-logReduxState(store);
 
 const render = () => {
   ReactDOM.render(
@@ -29,11 +28,11 @@ const render = () => {
   );
 };
 
-render();
-registerServiceWorker();
-
 if (module.hot) {
   module.hot.accept("./App", () => {
     render();
   });
 }
+
+render();
+registerServiceWorker();

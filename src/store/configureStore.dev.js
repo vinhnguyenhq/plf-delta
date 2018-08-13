@@ -5,7 +5,6 @@ import { routerMiddleware, connectRouter } from "connected-react-router";
 import { createBrowserHistory } from "history";
 import onlineStoreEnhancer from "redux-online-store-enhancer";
 
-import customMiddleware, { incrementMiddleware } from "../middlewares";
 import rootReducer from "../reducers";
 import rootSaga from "../sagas";
 
@@ -18,8 +17,6 @@ export default function configureStore() {
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
   const middleware = [
-    customMiddleware,
-    incrementMiddleware,
     routerMiddleware(history),
     sagaMiddleware,
     createLogger()
